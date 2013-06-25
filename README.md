@@ -1,0 +1,1 @@
+Brackets extension to show the git branch next to the project name

@@ -37,46 +37,46 @@ define(function (require, exports, module) {
         NativeFileSystem    = brackets.getModule("file/NativeFileSystem").NativeFileSystem;
     
     
-    function _projectOpen(event){
+    function _projectOpen(event) {
+            /**
+     * Loads a Branch from Git metadata file. 
+     */
+        function _loadBranch(path) {
+            var result = new $.Deferred();
+            var fileEntry = new NativeFileSystem.FileEntry(path);
+    
+            FileUtils.readAsText(fileEntry).done(function (text) {
+                if (text.indexOf("ref: ") === 0) {
+                    // e.g. "ref: refs/heads/branchname"
+                    var branch      = text.substr(16).trim();
+                    
+                    result.resolve({ branch: branch});
+                } else {
+                    result.reject();
+                }
+            }).fail(function () {
+                result.reject();
+            });
+    
+    
+            return result.promise();
+        }
+        
         //window.document.title = "123";
         var $projectTitle = $("#project-title");
         var rootPath = ProjectManager.getProjectRoot().fullPath;
-        _loadBranch(ProjectManager.getProjectRoot().fullPath + ".git/HEAD").done(function(loadBranchResult){
-            $projectTitle.html($projectTitle.text() + " - " + loadBranchResult.branch);        
+        _loadBranch(ProjectManager.getProjectRoot().fullPath + ".git/HEAD").done(function (loadBranchResult) {
+            $projectTitle.html($projectTitle.text() + " - " + loadBranchResult.branch);
         });
     }
 
-    /**
-     * Loads a Branch from Git metadata file. 
-     */
-    function _loadBranch(path) {
-        var result = new $.Deferred();
-        var fileEntry = new NativeFileSystem.FileEntry(path);
-
-        // HEAD contains a SHA in detached-head mode; otherwise it contains a relative path
-        // to a file in /refs which in turn contains the SHA
-        FileUtils.readAsText(fileEntry).done(function (text) {
-            if (text.indexOf("ref: ") === 0) {
-                // e.g. "ref: refs/heads/branchname"
-                var branch      = text.substr(16).trim();
-                
-                result.resolve({ branch: branch});
-            } else {
-                result.reject();
-            }
-        }).fail(function () {
-            result.reject();
-        });
-
-
-        return result.promise();
-    }    
+  
 
     
     // -----------------------------------------
     // Init
     // -----------------------------------------
-    function init() {        
+    function init() {
         var $ProjectManager = $(ProjectManager);
         $ProjectManager.on("projectOpen", _projectOpen);
     }
