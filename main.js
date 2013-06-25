@@ -21,9 +21,8 @@
  *
  */
 
-/*  texxt inlude  wih typos d makes  sense? tea is four  exclusive members only? */
 /*jslint vars: true, plusplus: true, devel: true, nomen: true, indent: 4, maxerr: 50 */
-/*global define, $, brackets, btoa, atob */
+/*global define, $, brackets */
 
 
 
@@ -66,7 +65,7 @@ define(function (require, exports, module) {
         var $projectTitle = $("#project-title");
         var rootPath = ProjectManager.getProjectRoot().fullPath;
         _loadBranch(ProjectManager.getProjectRoot().fullPath + ".git/HEAD").done(function (loadBranchResult) {
-            $projectTitle.html($projectTitle.text() + " - " + loadBranchResult.branch);
+            $projectTitle.html($projectTitle.text() + " (" + loadBranchResult.branch + ")");
         });
     }
 
