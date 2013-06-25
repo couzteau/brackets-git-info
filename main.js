@@ -24,8 +24,6 @@
 /*jslint vars: true, plusplus: true, devel: true, nomen: true, indent: 4, maxerr: 50 */
 /*global define, $, brackets */
 
-
-
 define(function (require, exports, module) {
     'use strict';
 
@@ -37,9 +35,9 @@ define(function (require, exports, module) {
     
     
     function _projectOpen(event) {
-            /**
-     * Loads a Branch from Git metadata file. 
-     */
+        /**
+        * Loads a Branch from Git metadata file. 
+        */
         function _loadBranch(path) {
             var result = new $.Deferred();
             var fileEntry = new NativeFileSystem.FileEntry(path);
@@ -57,7 +55,6 @@ define(function (require, exports, module) {
                 result.reject();
             });
     
-    
             return result.promise();
         }
         
@@ -69,9 +66,6 @@ define(function (require, exports, module) {
         });
     }
 
-  
-
-    
     // -----------------------------------------
     // Init
     // -----------------------------------------
