@@ -36,7 +36,7 @@ define(function (require, exports, module) {
     
     function _projectOpen(event) {
         /**
-        * Loads a Branch from Git metadata file. 
+        * Loads a branch from Git metadata file. 
         */
         function _loadBranch(path) {
             var result = new $.Deferred();
