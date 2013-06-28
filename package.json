@@ -2,7 +2,8 @@
    "name": "brackets-git-info",
    "version": "1.0.0",
    "description": "Show git branch name in project view.",
-   "homepage": "https://github.com/couzteau/brackets-git-info",    
+   "homepage": "https://github.com/couzteau/brackets-git-info",
+   "author": "Jochen Hagentröm",    
    "keywords": [
        "extension",
        "brackets",
