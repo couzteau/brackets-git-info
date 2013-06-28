@@ -1,6 +1,6 @@
 {
    "name": "brackets-git-info",
-   "version": "0.1",
+   "version": "1.0.0",
    "description": "Show git branch name in project view.",
    "keywords": [
        "extension",
