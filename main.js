@@ -21,7 +21,7 @@
  *
  */
 
-/*jslint vars: true, plusplus: true, devel: true, nomen: true, indent: 4, maxerr: 50 */
+/*jslint vars: true, plusplus: true, browser: true, nomen: true, indent: 4, maxerr: 50 */
 /*global define, $, brackets */
 
 define(function (require, exports, module) {
@@ -62,7 +62,21 @@ define(function (require, exports, module) {
         var $projectTitle = $("#project-title");
         var rootPath = ProjectManager.getProjectRoot().fullPath;
         _loadBranch(ProjectManager.getProjectRoot().fullPath + ".git/HEAD").done(function (loadBranchResult) {
-            $projectTitle.html($projectTitle.text() + " (" + loadBranchResult.branch + ")");
+            var branch = loadBranchResult.branch,
+                branchTitle = " (" + branch + ")",
+                title = $projectTitle.text(),
+                openParenIndex = title.lastIndexOf("("),
+                closeParenIndex = title.lastIndexOf(")"),
+                newTitle;
+            
+            if (openParenIndex > 0 && closeParenIndex > 0) {
+                newTitle = title.substring(0, openParenIndex - 1) +
+                    branchTitle + title.substring(closeParenIndex + 1);
+            } else {
+                newTitle = title + branchTitle;
+            }
+            
+            $projectTitle.html(newTitle);
         });
     }
 
@@ -72,6 +86,7 @@ define(function (require, exports, module) {
     function init() {
         var $ProjectManager = $(ProjectManager);
         $ProjectManager.on("projectOpen", _projectOpen);
+        window.addEventListener("focus", _projectOpen);
     }
     
     init();
