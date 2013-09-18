@@ -1,6 +1,6 @@
 {
    "name": "brackets-git-info",
-   "version": "1.0.0",
+   "version": "1.0.1,
    "description": "Show git branch name in project view.",
    "homepage": "https://github.com/couzteau/brackets-git-info",
    "author": "Jochen Hagentröm",    
@@ -21,6 +21,10 @@
            "name": "Couzteau",
            "email": "couzteau@bitfaeule.net",
            "web": "https://github.com/couzteau/brackets-git-info" 
+       },
+       {
+           "name": "iwehrman",
+           "web": "https://github.com/iwehrman" 
        } 
    ],
    "bugs": {
