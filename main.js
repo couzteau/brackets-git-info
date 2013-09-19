@@ -77,7 +77,13 @@ define(function (require, exports, module) {
             }
             
             $projectTitle.html(newTitle);
+            $('#project-dropdown-toggle')
+                .css("overflow", "hidden")
+                .css("white-space", "nowrap")
+                .css("text-overflow", "ellipsis")
+                .css("width", "100%");
         });
+
     }
 
     // -----------------------------------------
