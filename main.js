@@ -30,6 +30,7 @@ define(function (require, exports, module) {
 
     // Brackets modules
     var ProjectManager = brackets.getModule("project/ProjectManager"),
+        ExtensionUtils = brackets.getModule("utils/ExtensionUtils"),        
         FileUtils           = brackets.getModule("file/FileUtils"),
         NativeFileSystem    = brackets.getModule("file/NativeFileSystem").NativeFileSystem;
     
@@ -77,11 +78,6 @@ define(function (require, exports, module) {
             }
             
             $projectTitle.html(newTitle);
-            $('#project-dropdown-toggle')
-                .css("overflow", "hidden")
-                .css("white-space", "nowrap")
-                .css("text-overflow", "ellipsis")
-                .css("width", "100%");
         });
 
     }
@@ -90,6 +86,7 @@ define(function (require, exports, module) {
     // Init
     // -----------------------------------------
     function init() {
+        ExtensionUtils.loadStyleSheet(module, "styles.css");
         var $ProjectManager = $(ProjectManager);
         $ProjectManager.on("projectOpen", _projectOpen);
         window.addEventListener("focus", _projectOpen);
