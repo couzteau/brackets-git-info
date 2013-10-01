@@ -1,6 +1,7 @@
 {
    "name": "brackets-git-info",
-   "version": "1.0.3",
+   "title": "Show Git Branch for project"
+   "version": "1.0.4",
    "description": "Show git branch name in project view.",
    "homepage": "https://github.com/couzteau/brackets-git-info",
    "author": "Jochen Hagentröm",    
