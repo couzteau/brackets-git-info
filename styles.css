@@ -1,6 +1,5 @@
 #project-dropdown-toggle {
     overflow: hidden;
     white-space: nowrap;
-    text-overflow: ellipsis;
-    width: 93%;    
+    text-overflow: ellipsis;   
 }
