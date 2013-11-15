@@ -1,6 +1,7 @@
 Brackets extension to show the git branch next to the project name
 
 Release notes:<br>
+- 1.0.6 - switch to new FileSystem API
 - 1.0.5 - do not fix width for dropdown
 - 1.0.4 - better title for extension registry
 - 1.0.3 - fix layout issue
