@@ -29,10 +29,10 @@ define(function (require, exports, module) {
 
 
     // Brackets modules
-    var ProjectManager = brackets.getModule("project/ProjectManager"),
-        ExtensionUtils = brackets.getModule("utils/ExtensionUtils"),        
+    var ProjectManager      = brackets.getModule("project/ProjectManager"),
+        ExtensionUtils      = brackets.getModule("utils/ExtensionUtils"),
         FileUtils           = brackets.getModule("file/FileUtils"),
-        NativeFileSystem    = brackets.getModule("file/NativeFileSystem").NativeFileSystem;
+        FileSystem          = brackets.getModule("filesystem/FileSystem");
     
     
     function _projectOpen(event) {
@@ -40,10 +40,10 @@ define(function (require, exports, module) {
         * Loads a branch from Git metadata file. 
         */
         function _loadBranch(path) {
-            var result = new $.Deferred();
-            var fileEntry = new NativeFileSystem.FileEntry(path);
-    
-            FileUtils.readAsText(fileEntry).done(function (text) {
+            var result = new $.Deferred(),
+                file   = FileSystem.getFileForPath(path);
+                
+            FileUtils.readAsText(file).done(function (text) {
                 if (text.indexOf("ref: ") === 0) {
                     // e.g. "ref: refs/heads/branchname"
                     var branch      = text.substr(16).trim();
@@ -60,8 +60,9 @@ define(function (require, exports, module) {
         }
         
         //window.document.title = "123";
-        var $projectTitle = $("#project-title");
-        var rootPath = ProjectManager.getProjectRoot().fullPath;
+        var $projectTitle = $("#project-title"),
+            rootPath = ProjectManager.getProjectRoot().fullPath;
+        
         _loadBranch(ProjectManager.getProjectRoot().fullPath + ".git/HEAD").done(function (loadBranchResult) {
             var branch = loadBranchResult.branch,
                 branchTitle = " (" + branch + ")",
