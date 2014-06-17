@@ -45,6 +45,7 @@ define(function (require, exports, module) {
             
             // work around for a brackets issue where "manually"
             // created files are not picked up by file watchers.
+            // https://github.com/adobe/brackets/issues/8154
             file._stat =  file._contents = null;
                 
             FileUtils.readAsText(file).done(function (text) {
