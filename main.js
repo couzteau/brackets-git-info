@@ -42,6 +42,10 @@ define(function (require, exports, module) {
         function _loadBranch(path) {
             var result = new $.Deferred(),
                 file   = FileSystem.getFileForPath(path);
+            
+            // work around for a brackets issue where "manually"
+            // created files are not picked up by file watchers.
+            file._stat =  file._contents = null;
                 
             FileUtils.readAsText(file).done(function (text) {
                 if (text.indexOf("ref: ") === 0) {
