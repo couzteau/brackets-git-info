@@ -93,8 +93,8 @@ define(function (require, exports, module) {
     // -----------------------------------------
     function init() {
         ExtensionUtils.loadStyleSheet(module, "styles.css");
-        var $ProjectManager = $(ProjectManager);
-        $ProjectManager.on("projectOpen", _projectOpen);
+        var $ProjectManager = ProjectManager;
+        ProjectManager.on("projectOpen", _projectOpen);
         window.addEventListener("focus", _projectOpen);
     }
     
